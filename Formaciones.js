@@ -1,7 +1,7 @@
 const { Vagones } = require("./Vagones.js");
-const { VagonPasajeros } = require('./VagonPasajeros.js');
-const { VagonCarga } = require('./VagonCarga.js');
-const { VagonDormitorio } = require('./VagonDormitorio.js');
+const { VagonPasajeros } = require("./VagonPasajeros.js");
+const { VagonCarga } = require("./VagonCarga.js");
+const { VagonDormitorio } = require("./VagonDormitorio.js");
 
 class Formaciones {
   #nombreVagon;
@@ -22,12 +22,21 @@ class Formaciones {
   }
 
   estaEquilibrada() {
-    const totalPasajeros = this.listaVagones.map((vagon) =>
-      vagon.verCantidadPasajeros()
+    const vagonesConPasajeros = this.listaVagones.filter((vagon) =>
+      vagon.tienePasajeros()
     );
-    const maxPasajeros = Math.max(...totalPasajeros);
-    const minPasajeros = Math.min(...totalPasajeros);
-    return maxPasajeros - minPasajeros <= 20;
+
+    return vagonesConPasajeros.length === 0
+      ? true
+      : vagonesConPasajeros.reduce(
+          (acum, vagon) => vagon.verCantidadPasajeros(),
+          0
+        ) -
+          vagonesConPasajeros.reduce(
+            (acum, vagon) => vagon.verCantidadPasajeros(),
+            0
+          ) <=
+          20;
   }
 
   estaOrganizada() {
@@ -38,18 +47,12 @@ class Formaciones {
       (vagon) => !vagon.tienePasajeros()
     );
 
-    if (vagonesConPasajeros.length === 0 || vagonesSinPasajeros.length === 0) {
-      return true;
-    }
-
-    const primerVagonConPasajeros = vagonesConPasajeros[0];
-    const ultimoVagonSinPasajeros =
-      vagonesSinPasajeros[vagonesSinPasajeros.length - 1];
-
-    return (
-      this.listaVagones.indexOf(primerVagonConPasajeros) <
-      this.listaVagones.indexOf(ultimoVagonSinPasajeros)
-    );
+    return vagonesConPasajeros.length === 0 || vagonesSinPasajeros.length === 0
+      ? true
+      : this.listaVagones.indexOf(vagonesConPasajeros[0]) <
+          this.listaVagones.indexOf(
+            vagonesSinPasajeros[vagonesSinPasajeros.length - 1]
+          );
   }
 
   cuantosPasajerosPuedeLlevar() {
@@ -80,27 +83,22 @@ class Formaciones {
   }
 
   tieneBanios() {
-    const vagonesConBanios = this.listaVagones.filter(
-      (vagon) => vagon.verSiTieneBanio()
+    const vagonesConBanios = this.listaVagones.filter((vagon) =>
+      vagon.verSiTieneBanio()
     );
     return vagonesConBanios.length;
   }
-  
+
   hacerMantenimiento() {
+    // si aplico ternaria acá exploto.
     this.listaVagones.forEach((vagon) => {
       if (vagon instanceof VagonPasajeros) {
-        // Mantenimiento de vagones de pasajeros: ordenarlos
         vagon.ordenar(true);
       } else if (vagon instanceof VagonCarga) {
-        // Mantenimiento de vagones de carga: arreglar maderas sueltas
         vagon.arreglarMaderasSueltas();
       }
-      // No es necesario lógica para vagones dormitorio, ya que no requieren mantenimiento según la consigna.
     });
   }
-
-  
-
 }
 
 module.exports = { Formaciones };

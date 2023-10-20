@@ -3,7 +3,7 @@ const { Vagones } = require("./Vagones.js");
 class VagonCarga extends Vagones {
   #cargaMaximaIdeal;
   #maderasSueltas;
-  #tieneBanios
+  #tieneBanios;
 
   constructor(cargaMaximaIdeal, maderasSueltas) {
     super(0);
@@ -34,13 +34,12 @@ class VagonCarga extends Vagones {
   }
 
   verSiTieneBanio() {
-    return this.#tieneBanios
+    return this.#tieneBanios;
   }
 
   arreglarMaderasSueltas() {
     this.#maderasSueltas = Math.max(0, this.#maderasSueltas - 2);
   }
-
 }
 
 module.exports = { VagonCarga };

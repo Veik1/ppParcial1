@@ -1,4 +1,4 @@
-const { Vagones } = require('./Vagones.js');
+const { Vagones } = require("./Vagones.js");
 
 class VagonPasajeros extends Vagones {
   #largo;
@@ -18,7 +18,7 @@ class VagonPasajeros extends Vagones {
     this.#maximaCarga = this.calcMaximaCarga();
   }
 
-  ordenar(unOrden){
+  ordenar(unOrden) {
     this.#estaOrdenada = true;
     this.#maximoPasajeros = this.calcMaximoPasajeros();
   }
@@ -55,7 +55,6 @@ class VagonPasajeros extends Vagones {
   verCantidadPasajeros() {
     return this.#maximoPasajeros;
   }
-
 }
 
 module.exports = { VagonPasajeros };

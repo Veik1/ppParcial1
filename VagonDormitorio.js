@@ -42,10 +42,9 @@ class VagonDormitorio extends Vagones {
     return this.calcMaximoPasajeros() > 0;
   }
 
-  verCantidadPasajeros(){
+  verCantidadPasajeros() {
     return this.#maximoPasajeros;
   }
-
 }
 
 module.exports = { VagonDormitorio };
