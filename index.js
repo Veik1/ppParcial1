@@ -70,6 +70,7 @@ console.log("Baños: " + formacion1.tieneBanios());
 // Equilibrio
 
 console.log("\n¿Está equilibrada en pasajeros?: " + formacion1.estaEquilibrada());
+console.log("Está organizada en pasajeros?: " + formacion1.estaOrganizada());
 
 // Mantenimiento
 
