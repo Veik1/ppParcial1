@@ -10,7 +10,7 @@ Una administradora ferroviaria necesita una aplicación que le ayude a manejar l
 
 Una formación es lo que habitualmente llamamos "un tren", tiene una locomotora y muchos vagones
 
-#Etapa 1 - vagones
+# Etapa 1 - vagones
 
 En esta etapa vamos a considerar los vagones de cada formación.
 En el modelo debemos incluir: vagones de pasajeros, vagones de carga, y vagones dormitorio.
