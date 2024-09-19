@@ -1,7 +1,11 @@
 Armar una clase formacion que contega los vagones.
+
 Armar las 3 clases de vagones
+
 Pasajero
+
 Carga
+
 Dormitorio
 
 # Infraestructura ferroviaria
