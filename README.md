@@ -4,22 +4,27 @@ Pasajero
 Carga
 Dormitorio
 
-Infraestructura ferroviaria
+# Infraestructura ferroviaria
+
 Una administradora ferroviaria necesita una aplicación que le ayude a manejar las formaciones que tiene disponibles en distintos depósitos.
 
 Una formación es lo que habitualmente llamamos "un tren", tiene una locomotora y muchos vagones
 
-Etapa 1 - vagones
+#Etapa 1 - vagones
+
 En esta etapa vamos a considerar los vagones de cada formación.
 En el modelo debemos incluir: vagones de pasajeros, vagones de carga, y vagones dormitorio.
 
-Vagones de pasajeros
+# Vagones de pasajeros
+
 Para definir un vagón de pasajeros, debemos indicar el largo y el ancho medidos en metros, si tiene o no baños, y si está o no ordenado.
 
 A partir de estos valores, la cantidad de pasajeros que puede transportar un vagón se calcula de esta forma:
 
 si el ancho es hasta 3 metros, entran 8 pasajeros por cada metro de largo.
+
 si el ancho es de más de 3 metros, entran 10 pasajeros por cada metro de largo.
+
 Si el vagón no está ordenado, restar 15 pasajeros.
 
 P.ej.:
@@ -32,7 +37,7 @@ si tiene baños, entonces puede llevar hasta 300 kilos.
 si no, hasta 800 kilos.
 El peso máximo de un vagón de pasajeros se calcula así: 2000 kilos, más 80 kilos por cada pasajero, más el máximo de carga que puede llevar.
 
-Vagones de carga
+# Vagones de carga
 Para cada vagón de carga se indica su carga máxima ideal, y cuántas maderas tiene sueltas.
 Un vagón de carga puede llevar hasta su carga máxima ideal, menos 400 kilos por cada madera suelta.
 
@@ -42,7 +47,7 @@ No puede llevar pasajeros, y no tiene baños.
 
 Su peso máximo es de 1500 kilos más el máximo de carga que puede llevar.
 
-Vagones dormitorio
+# Vagones dormitorio
 Para cada vagón dormitorio se indica: cuántos compartimientos tiene, y cuántas camas se ponen en cada compartimiento.
 
 La cantidad máxima de pasajeros es el resultado de multiplicar cantidad de compartimientos por cantidad de camas por compartimiento. P.ej. un vagón dormitorio con 12 compartimientos de 4 camas cada uno, puede llevar hasta 48 pasajeros.
@@ -51,7 +56,7 @@ Todos los vagones dormitorio tienen baños, y pueden llevar hasta 1200 kilos de 
 
 Su peso máximo se calcula así: 4000 kilos, más 80 kilos por cada pasajero, más el máximo de carga que puede llevar.
 
-Formación 
+# Formación 
 A partir del modelo que se construya se tiene que poder saber fácilmente, para una formación:
 
 hasta cuántos pasajeros puede llevar.
@@ -64,10 +69,11 @@ Además, se tiene que poder hacer mantenimiento de una formación, que implica h
 hacer mantenimiento de un vagón de pasajeros quiere decir ordenarlo; si no estaba ordenado pasa a estar ordenado, si ya estaba ordenado no cambia nada.
 hacer mantenimiento de un vagón de carga es arreglar dos de las maderas que tiene sueltas: si tenía 5 pasa a 3, si tenía 1 pasa a 0, si tenía 0 queda en 0.
 hacer mantenimiento de un vagón dormitorio no tiene ningún efecto que interese para este modelo.
-Tests etapa 1
+
+# Tests etapa 1
 Vamos a verificar el comportamiento de dos formaciones, y de sus vagones.
 
-Primera formación
+# Primera formación
 Está compuesta por cuatro vagones, en este orden:
 
 un vagón de pasajeros de 10 metros de largo por 4 de ancho, ordenado, con baño.
@@ -94,7 +100,8 @@ Por qué las diferencias de valores después de hacer mantenimiento:
 pasajeros: el vagón 2 pasa a estar ordenado, lo que aumenta en 15 su cantidad de pasajeros.
 vagones populares: por lo recién dicho, el vagón 2 pasa de 41 a 56 pasajeros, por lo que es considerado popular.
 dispersión de pesos: el vagón 2 pasa de 6080 a 7280 kilos. Por su parte, el vagón 3 pasa de 6300 a 7100 kilos. Ahora el vagón más liviano es el 3.
-Bonus para el 10 (diez) Un poco más salados
+
+# Bonus para el 10 (diez) Un poco más salados
 Poder pedirle a una formación lo siguiente:
 
 si está equilbrada en pasajeros, o sea: si considerando sólo los vagones que llevan pasajeros, la diferencia entre el que más lleva y el que menos no supera los 20 pasajeros.
